@@ -106,17 +106,45 @@
   "especiais": [
     {
       "id": "e1",
-      "titulo": "One-Shot Especial: Segredos no Nevoeiro",
-      "genero": "investigacao",
-      "duracao": "Sessão Única",
-      "sistema": "Call of Cthulhu 7e",
-      "vagas": "2/4",
-      "preco": "R$ 40,00 (Sessão Única)",
-      "horario": "31 de Outubro, 20:00",
-      "mestre": "Mestre Arthur",
+      "titulo": "Academia De Magia Mysterium",
+      "genero": "fantasia",
+      "duracao": "Indefinido",
+      "sistema": "Mago: O Despertar",
+      "vagas": "0/5",
+      "preco": "R$ 40,00",
+      "horario": "Indefinido",
+      "mestre": "Mestre Iguro",
       "imagem": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80",
-      "descricao": "Uma sessão única e temática com mapas com iluminação dinâmica, trilha sonora imersiva e handouts exclusivos. Investigadores nos anos 1920 investigam um desaparecimento na costa britânica.",
-      "requisitos": "Nenhum pré-requisito (fichas pré-criadas inclusas)."
+      "descricao": "Uma aventura de fantasia urbana onde os jogadores assumem o papel de jovens conjuradores em uma academia de magia. Explore mistérios, rivalidades e o despertar de poderes mágicos.",
+      "requisitos": "."
+    },
+    {
+      "id": "e2",
+      "titulo": "Escolhas",
+      "genero": "fantasia",
+      "duracao": "Sessão Única",
+      "sistema": "Saga",
+      "vagas": "0/6",
+      "preco": "R$ 40,00",
+      "horario": "Indefinido",
+      "mestre": "Mestre Shihoin",
+      "imagem": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+      "descricao": "Uma aventura de fantasia onde os jogadores assumem o papel de heróis no mundo de Star Wars. Prepare-se para decisões difíceis e consequências que moldarão o destino da galáxia.",
+      "requisitos": "1. Conhecimento básico do sistema Saga. 2. Apreço pelo universo de Star Wars. 3. Ter mais de 18 anos. 4. Comprometimento com a narrativa e respeito aos demais jogadores."
+    },
+    {
+      "id": "e3",
+      "titulo": "Assimilação",
+      "genero": "fantasia",
+      "duracao": "Indefinido",
+      "sistema": "Assimilação RPG",
+      "vagas": "0/10",
+      "preco": "R$ 35,00",
+      "horario": "Indefinido",
+      "mestre": "Mestre Iguro e Mestre Shihoin",
+      "imagem": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
+      "descricao": "",
+      "requisitos": ""
     }
   ]
 }
