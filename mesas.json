@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "titulo": "A Mina Perdida de Phandelver",
+    "categoria": "iniciantes",
+    "genero": "fantasia",
+    "sistema": "D&D 5e",
+    "vagas": "3/5",
+    "preco": "R$ 25,00 / sessão",
+    "horario": "Sábados, 19:00 - 22:30",
+    "mestre": "Mestre Arthur",
+    "imagem": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80",
+    "descricao": "A aventura clássica perfeita para quem quer aprender as regras do D&D 5e do zero. Não é necessário ter experiência prévia nem ficha pronta — ensinamos tudo passo a passo!",
+    "requisitos": "Discord para voz, conta gratuita no Roll20."
+  },
+  {
+    "id": 2,
+    "titulo": "A Maldição de Strahd",
+    "categoria": "veteranos",
+    "genero": "terror",
+    "sistema": "D&D 5e",
+    "vagas": "1/4",
+    "preco": "R$ 35,00 / sessão",
+    "horario": "Sextas, 20:00 - 00:00",
+    "mestre": "Mestre Arthur",
+    "imagem": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=600&q=80",
+    "descricao": "Sob as nuvens pesadas de Barovia, o Conde Strahd von Zarovich observa. Campanha gótica de sobrevivência e terror psicológico focada em roleplay denso e dilemas morais.",
+    "requisitos": "Conhecimento intermediário das regras, histórico de personagem elaborado."
+  },
+  {
+    "id": 3,
+    "titulo": "Sua Campanha Sob Medida",
+    "categoria": "personalizadas",
+    "genero": "personalizado",
+    "sistema": "A sua escolha",
+    "vagas": "A combinar",
+    "preco": "Sob Consulta",
+    "horario": "Horário flexível",
+    "mestre": "Mestre Arthur",
+    "imagem": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80",
+    "descricao": "Quer jogar um sistema específico com seu grupo fechado de amigos? Eu narro a campanha dos seus sonhos! Posso preparar desde aventuras oficiais até mundos 100% autorais.",
+    "requisitos": "Grupo próprio (mínimo 3 jogadores)."
+  },
+  {
+    "id": 4,
+    "titulo": "One-Shot Especial de Halloween: Segredos no Nevoeiro",
+    "categoria": "especiais",
+    "genero": "investigacao",
+    "sistema": "Call of Cthulhu 7e",
+    "vagas": "2/4",
+    "preco": "R$ 40,00 (Sessão Única)",
+    "horario": "31 de Outubro, 20:00",
+    "mestre": "Mestre Arthur",
+    "imagem": "https://images.unsplash.com/photo-1514539079130-25950c84af65?auto=format&fit=crop&w=600&q=80",
+    "descricao": "Uma sessão única e temática com mapas com iluminação dinâmica, trilha sonora imersiva e handouts exclusivos. Investigadores nos anos 1920 investigam um desaparecimento na costa britânica.",
+    "requisitos": "Nenhum pré-requisito (fichas pré-criadas inclusas)."
+  }
+]

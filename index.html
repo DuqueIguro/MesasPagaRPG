@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesas de RPG - Agendamento & Aventuras</title>
+  <!-- Google Fonts para tipografia medieval/nobre -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@500;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <h1>⚔️ Salão de Aventuras ⚔️</h1>
+    <p>Escolha sua jornada e garanta sua vaga ao redor da mesa</p>
+  </header>
+
+  <main class="container">
+    <!-- Filtros de Gênero da Campanha -->
+    <nav class="filters-container">
+      <span class="filter-label">Filtrar por Gênero:</span>
+      <div class="filters">
+        <button class="filter-btn active" data-genre="todos">Todos</button>
+        <button class="filter-btn" data-genre="fantasia">🗡️ Fantasia Medieval</button>
+        <button class="filter-btn" data-genre="terror">🩸 Terror & Gótico</button>
+        <button class="filter-btn" data-genre="investigacao">🔍 Investigação</button>
+        <button class="filter-btn" data-genre="personalizado">📜 Personalizados</button>
+      </div>
+    </nav>
+
+    <!-- Seções por Categoria -->
+    <div id="categories-container">
+      <section class="category-section" id="sec-iniciantes">
+        <h2 class="category-title">🌱 Mesas para Iniciantes</h2>
+        <div class="cards-grid" id="grid-iniciantes"></div>
+      </section>
+
+      <section class="category-section" id="sec-veteranos">
+        <h2 class="category-title">🐉 Mesas para Veteranos</h2>
+        <div class="cards-grid" id="grid-veteranos"></div>
+      </section>
+
+      <section class="category-section" id="sec-personalizadas">
+        <h2 class="category-title">🎲 Mesas Personalizadas</h2>
+        <div class="cards-grid" id="grid-personalizadas"></div>
+      </section>
+
+      <section class="category-section" id="sec-especiais">
+        <h2 class="category-title">⭐ Mesas Especiais & One-Shots</h2>
+        <div class="cards-grid" id="grid-especiais"></div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Modal de Detalhes -->
+  <div id="modal" class="modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button id="modal-close" class="modal-close" aria-label="Fechar">&times;</button>
+      <img id="modal-img" src="" alt="" class="modal-img">
+      <div class="modal-body">
+        <div class="badges-row">
+          <span id="modal-category" class="badge badge-category"></span>
+          <span id="modal-genre" class="badge badge-genre"></span>
+        </div>
+        <h2 id="modal-title"></h2>
+        
+        <div class="modal-info-grid">
+          <p><strong>Sistema:</strong> <span id="modal-system"></span></p>
+          <p><strong>Horário:</strong> <span id="modal-schedule"></span></p>
+          <p><strong>Vagas:</strong> <span id="modal-slots"></span></p>
+          <p><strong>Investimento:</strong> <span id="modal-price" class="price"></span></p>
+        </div>
+
+        <hr>
+
+        <h3>Sobre a Mesa</h3>
+        <p id="modal-description"></p>
+
+        <h3>Pré-requisitos</h3>
+        <p id="modal-requirements"></p>
+
+        <a id="modal-contact-btn" href="#" target="_blank" class="btn-primary">
+          Reservar Vaga no WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
