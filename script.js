@@ -1,6 +1,6 @@
-let todasAsMesas = [];
+let dadosMesasPorCategoria = {};
 
-// Grids de cada categoria
+// Mapeamento dos containers da DOM
 const grids = {
   iniciantes: document.getElementById('grid-iniciantes'),
   veteranos: document.getElementById('grid-veteranos'),
@@ -8,7 +8,6 @@ const grids = {
   especiais: document.getElementById('grid-especiais')
 };
 
-// Seções inteiras
 const sections = {
   iniciantes: document.getElementById('sec-iniciantes'),
   veteranos: document.getElementById('sec-veteranos'),
@@ -33,57 +32,67 @@ const modalDescription = document.getElementById('modal-description');
 const modalRequirements = document.getElementById('modal-requirements');
 const modalContactBtn = document.getElementById('modal-contact-btn');
 
-// Carregar JSON
+// Carregar o arquivo JSON
 async function carregarMesas() {
   try {
     const resposta = await fetch('mesas.json');
-    todasAsMesas = await resposta.json();
-    renderizarPorCategorias(todasAsMesas);
+    dadosMesasPorCategoria = await resposta.json();
+    renderizarMesas('todos');
   } catch (erro) {
     console.error('Erro ao carregar mesas.json:', erro);
   }
 }
 
-// Renderizar mesas organizadas por Categoria
-function renderizarPorCategorias(mesas) {
-  // Limpa todos os grids
-  Object.values(grids).forEach(grid => grid.innerHTML = '');
-
-  // Contadores para controlar a exibição das seções
-  const contagem = { iniciantes: 0, veteranos: 0, personalizadas: 0, especiais: 0 };
-
-  mesas.forEach(mesa => {
-    const card = criarCardHTML(mesa);
-    if (grids[mesa.categoria]) {
-      grids[mesa.categoria].appendChild(card);
-      contagem[mesa.categoria]++;
-    }
+// Renderiza as mesas percorrendo cada categoria do objeto JSON
+function renderizarMesas(generoFiltro) {
+  // Limpa o conteúdo de todas as grades antes de renderizar
+  Object.keys(grids).forEach(categoria => {
+    if (grids[categoria]) grids[categoria].innerHTML = '';
   });
 
-  // Esconde seções vazias caso um filtro esteja ativo
-  Object.keys(sections).forEach(cat => {
-    if (contagem[cat] === 0) {
-      sections[cat].style.display = 'none';
+  // Percorre cada categoria do JSON (iniciantes, veteranos, etc.)
+  Object.keys(dadosMesasPorCategoria).forEach(categoriaKey => {
+    const listaMesas = dadosMesasPorCategoria[categoriaKey] || [];
+    const gridContainer = grids[categoriaKey];
+    const sectionContainer = sections[categoriaKey];
+
+    if (!gridContainer || !sectionContainer) return;
+
+    let quantidadeExibida = 0;
+
+    listaMesas.forEach(mesa => {
+      // Aplica o filtro de gênero se não for 'todos'
+      if (generoFiltro === 'todos' || mesa.genero === generoFiltro) {
+        const card = criarCardHTML(mesa, categoriaKey);
+        gridContainer.appendChild(card);
+        quantidadeExibida++;
+      }
+    });
+
+    // Se não houver mesas visíveis na categoria, esconde a seção inteira
+    if (quantidadeExibida === 0) {
+      sectionContainer.style.display = 'none';
     } else {
-      sections[cat].style.display = 'block';
+      sectionContainer.style.display = 'block';
     }
   });
 }
 
-// Criar o elemento do Card
-function criarCardHTML(mesa) {
+// Cria a estrutura HTML de cada card
+function criarCardHTML(mesa, categoriaNome) {
   const card = document.createElement('div');
   card.classList.add('card');
   card.innerHTML = `
     <img src="${mesa.imagem}" alt="${mesa.titulo}" class="card-img">
     <div class="card-content">
       <div class="badges-row">
-        <span class="badge badge-category">${mesa.categoria}</span>
+        <span class="badge badge-category">${categoriaNome}</span>
         <span class="badge badge-genre">${mesa.genero}</span>
       </div>
       <h3 class="card-title">${mesa.titulo}</h3>
       <div class="card-details">
         <p>📜 <strong>Sistema:</strong> ${mesa.sistema}</p>
+        <p>⏳ <strong>Duração:</strong> ${mesa.duracao || 'N/A'}</p>
         <p>⏰ <strong>Horário:</strong> ${mesa.horario}</p>
       </div>
       <div class="card-footer">
@@ -93,18 +102,18 @@ function criarCardHTML(mesa) {
     </div>
   `;
 
-  card.addEventListener('click', () => abrirModal(mesa));
+  card.addEventListener('click', () => abrirModal(mesa, categoriaNome));
   return card;
 }
 
-// Abrir Modal
-function abrirModal(mesa) {
+// Abrir e preencher o modal
+function abrirModal(mesa, categoriaNome) {
   modalImg.src = mesa.imagem;
   modalImg.alt = mesa.titulo;
-  modalCategory.textContent = mesa.categoria;
+  modalCategory.textContent = categoriaNome;
   modalGenre.textContent = mesa.genero;
   modalTitle.textContent = mesa.titulo;
-  modalSystem.textContent = mesa.sistema;
+  modalSystem.textContent = `${mesa.sistema} (${mesa.duracao || 'Duração variável'})`;
   modalSchedule.textContent = mesa.horario;
   modalSlots.textContent = mesa.vagas;
   modalPrice.textContent = mesa.preco;
@@ -118,7 +127,7 @@ function abrirModal(mesa) {
   modal.classList.remove('hidden');
 }
 
-// Fechar Modal
+// Controles do Modal
 function fecharModal() {
   modal.classList.add('hidden');
 }
@@ -129,22 +138,16 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && !modal.classList.contains('hidden')) fecharModal();
 });
 
-// Filtro por Gênero
+// Eventos dos botões de filtro por Gênero
 filterBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     filterBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 
     const generoSelecionado = btn.getAttribute('data-genre');
-
-    if (generoSelecionado === 'todos') {
-      renderizarPorCategorias(todasAsMesas);
-    } else {
-      const mesasFiltradas = todasAsMesas.filter(m => m.genero === generoSelecionado);
-      renderizarPorCategorias(mesasFiltradas);
-    }
+    renderizarMesas(generoSelecionado);
   });
 });
 
-// Inicializar
+// Inicialização
 carregarMesas();
