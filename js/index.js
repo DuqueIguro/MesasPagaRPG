@@ -35,11 +35,11 @@ const modalContactBtn = document.getElementById('modal-contact-btn');
 // Carregar o arquivo JSON
 async function carregarMesas() {
   try {
-    const resposta = await fetch('mesas.json');
+    const resposta = await fetch('data/mesas.json');
     dadosMesasPorCategoria = await resposta.json();
     renderizarMesas('todos');
   } catch (erro) {
-    console.error('Erro ao carregar mesas.json:', erro);
+    console.error('Erro ao carregar data/mesas.json:', erro);
   }
 }
 

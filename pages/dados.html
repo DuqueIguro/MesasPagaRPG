@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grimório de Dados // Rolador de RPG de Mesa</title>
+    <!-- Font Awesome para ícones de RPG e fantasia -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Fontes Estilo Fantasia Medieval / RPG de Mesa -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=MedievalSharp&family=Metamorphous&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/dados.css">
+</head>
+<body class="theme-standard">
+    <!-- Textura de Pergaminho e Gradiente de Fundo Dinâmico -->
+    <div class="tabletop-vignette"></div>
+    <div class="dynamic-ambient-bg"></div>
+
+    <div class="grimoire-wrapper">
+        <!-- CABEÇALHO DO GRIMÓRIO / MESA DE RPG -->
+        <header class="tome-header">
+            <div class="header-flourish left-flourish">
+                <i class="fa-solid fa-feather-pointed"></i>
+                <span class="edition-tag">Grimório Vol. VI</span>
+            </div>
+
+            <div class="header-center">
+                <div class="tome-subtitle">✦ Mesa de Rolagens Místicas ✦</div>
+                <h1 class="tome-title">ORÁCULO DOS DADOS</h1>
+                <div class="tome-divider">
+                    <span class="gem left-gem"></span>
+                    <span class="bar"></span>
+                    <i class="fa-solid fa-dice-d20 title-icon"></i>
+                    <span class="bar"></span>
+                    <span class="gem right-gem"></span>
+                </div>
+            </div>
+
+            <div class="header-flourish right-flourish">
+                <div class="hourglass-box">
+                    <span class="time-label"><i class="fa-solid fa-hourglass-half"></i> Tempo Real</span>
+                    <span id="realtime-clock" class="time-val">--:--:--</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- SELETOR DE SISTEMA DE ROLAGEM (ABAS EM COURO E METAL) -->
+        <nav class="grimoire-tabs">
+            <button id="tab-btn-standard" class="tome-tab active" onclick="switchTheme('standard')">
+                <i class="fa-solid fa-dice-d20 tab-icon"></i>
+                <div class="tab-text-group">
+                    <span class="tab-main-title">Rolagem Clássica</span>
+                    <span class="tab-sub-title">Dados Numéricos (D4 a D100)</span>
+                </div>
+            </button>
+
+            <button id="tab-btn-macro" class="tome-tab" onclick="switchTheme('macro')">
+                <i class="fa-solid fa-scroll tab-icon"></i>
+                <div class="tab-text-group">
+                    <span class="tab-main-title">Rolagem de Macro</span>
+                    <span class="tab-sub-title">Dados Simbólicos (D6, D10, D12)</span>
+                </div>
+            </button>
+        </nav>
+
+        <!-- CONTEÚDO PRINCIPAL DAS MESAS -->
+        <main class="tome-body">
+
+            <!-- =================================================================
+                 SEÇÃO 1: ROLAGEM NORMAL / CLÁSSICA (VERDE ESMERALDA & VERMELHO RUBI)
+                 ================================================================= -->
+            <section id="panel-standard" class="rpg-panel active-panel">
+                <div class="parchment-grid">
+                    <!-- Seleção de Dados Numéricos -->
+                    <div class="parchment-card dice-shelf">
+                        <div class="card-title-bar">
+                            <div class="card-heading">
+                                <i class="fa-solid fa-ring"></i> Bolsa de Dados Poliédricos
+                            </div>
+                            <button class="tome-btn-reset" onclick="clearDicePool('standard')">
+                                <i class="fa-solid fa-rotate-left"></i> Limpar
+                            </button>
+                        </div>
+                        <p class="section-desc">Escolha a quantidade de cada poliedro para lançar à mesa:</p>
+
+                        <div class="dice-square-grid">
+                            <div class="dice-tray-slot" data-die="d4">
+                                <div class="die-badge-sq">D4</div>
+                                <div class="stepper-counter">
+                                    <button class="step-btn minus" onclick="alterDiceCount('standard', 'd4', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="count-value" id="val-std-d4">0</span>
+                                    <button class="step-btn plus" onclick="alterDiceCount('standard', 'd4', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="dice-tray-slot" data-die="d6">
+                                <div class="die-badge-sq">D6</div>
+                                <div class="stepper-counter">
+                                    <button class="step-btn minus" onclick="alterDiceCount('standard', 'd6', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="count-value" id="val-std-d6">0</span>
+                                    <button class="step-btn plus" onclick="alterDiceCount('standard', 'd6', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="dice-tray-slot" data-die="d8">
+                                <div class="die-badge-sq">D8</div>
+                                <div class="stepper-counter">
+                                    <button class="step-btn minus" onclick="alterDiceCount('standard', 'd8', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="count-value" id="val-std-d8">0</span>
+                                    <button class="step-btn plus" onclick="alterDiceCount('standard', 'd8', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="dice-tray-slot" data-die="d10">
+                                <div class="die-badge-sq">D10</div>
+                                <div class="stepper-counter">
+                                    <button class="step-btn minus" onclick="alterDiceCount('standard', 'd10', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="count-value" id="val-std-d10">0</span>
+                                    <button class="step-btn plus" onclick="alterDiceCount('standard', 'd10', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="dice-tray-slot" data-die="d12">
+                                <div class="die-badge-sq">D12</div>
+                                <div class="stepper-counter">
+                                    <button class="step-btn minus" onclick="alterDiceCount('standard', 'd12', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="count-value" id="val-std-d12">0</span>
+                                    <button class="step-btn plus" onclick="alterDiceCount('standard', 'd12', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="dice-tray-slot" data-die="d20">
+                                <div class="die-badge-sq highlight-d20">D20</div>
+                                <div class="stepper-counter">
+                                    <button class="step-btn minus" onclick="alterDiceCount('standard', 'd20', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="count-value" id="val-std-d20">0</span>
+                                    <button class="step-btn plus" onclick="alterDiceCount('standard', 'd20', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="dice-tray-slot" data-die="d100">
+                                <div class="die-badge-sq">D100</div>
+                                <div class="stepper-counter">
+                                    <button class="step-btn minus" onclick="alterDiceCount('standard', 'd100', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="count-value" id="val-std-d100">0</span>
+                                    <button class="step-btn plus" onclick="alterDiceCount('standard', 'd100', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Configurações e Modificadores Clássicos -->
+                    <div class="parchment-card params-shelf">
+                        <div class="card-title-bar">
+                            <div class="card-heading">
+                                <i class="fa-solid fa-sliders"></i> Regras & Modificadores
+                            </div>
+                        </div>
+
+                        <div class="rpg-form-group">
+                            <label><i class="fa-solid fa-scale-balanced"></i> Estilo da Rolagem:</label>
+                            <select id="std-roll-mode" class="rpg-select">
+                                <option value="sum">Soma Total de Todos os Dados</option>
+                                <option value="highest">Manter Apenas o Maior Valor</option>
+                                <option value="lowest">Manter Apenas o Menor Valor</option>
+                                <option value="individual">Apresentar Resultados Individuais</option>
+                            </select>
+                        </div>
+
+                        <div class="rpg-form-group">
+                            <label><i class="fa-solid fa-wand-magic-sparkles"></i> Modificador Manual (+/-):</label>
+                            <div class="input-stepper-box">
+                                <button class="step-btn minus" onclick="adjustInputValue('std-mod-input', -1)"><i class="fa-solid fa-minus"></i></button>
+                                <input type="number" id="std-mod-input" value="0" class="rpg-number-input">
+                                <button class="step-btn plus" onclick="adjustInputValue('std-mod-input', 1)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="rpg-form-group">
+                            <label class="danger-label"><i class="fa-solid fa-skull"></i> Grau de Desvantagem:</label>
+                            <p class="rule-hint">Descarta os N maiores valores rolados (se todos forem descartados, prevalece o menor).</p>
+                            <div class="input-stepper-box">
+                                <button class="step-btn minus" onclick="adjustInputValue('std-disadv-input', -1, 0)"><i class="fa-solid fa-minus"></i></button>
+                                <input type="number" id="std-disadv-input" value="0" min="0" class="rpg-number-input">
+                                <button class="step-btn plus" onclick="adjustInputValue('std-disadv-input', 1, 0)"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                        </div>
+
+                        <button id="btn-roll-standard" class="cast-dice-btn std-btn" onclick="executeStandardRoll()">
+                            <i class="fa-solid fa-hand-fist"></i> ROLAR DADOS NA MESA
+                        </button>
+                    </div>
+                </div>
+
+                <!-- BANDEJA DE DADOS DEDICADA DA ROLAGEM NORMAL -->
+                <div class="dice-tray-board">
+                    <div class="tray-header">
+                        <div class="tray-title"><i class="fa-solid fa-shield"></i> Bandeja da Mesa Clássica</div>
+                        <div id="std-tray-status" class="tray-status">Aguardando lançamento dos dados...</div>
+                    </div>
+
+                    <div id="std-dice-arena" class="dice-arena-felt">
+                        <div class="empty-tray-msg">
+                            <i class="fa-solid fa-dice-d6 tray-felt-icon"></i>
+                            <span>Escolha os dados acima e lance-os na bandeja de veludo.</span>
+                        </div>
+                    </div>
+
+                    <!-- Painel de Resultado Consolidado -->
+                    <div id="std-summary-box" class="scroll-summary-box hidden"></div>
+                </div>
+            </section>
+
+
+            <!-- =================================================================
+                 SEÇÃO 2: ROLAGEM MACRO (TONS DE MARROM, COURO & ÂMBAR)
+                 ================================================================= -->
+            <section id="panel-macro" class="rpg-panel">
+                <div class="parchment-grid">
+                    <!-- Seleção de Macro Dados -->
+                    <div class="parchment-card dice-shelf">
+                        <div class="card-title-bar">
+                            <div class="card-heading">
+                                <i class="fa-solid fa-gem"></i> Dados Rúnicos de Macro
+                            </div>
+                            <button class="tome-btn-reset" onclick="clearDicePool('macro')">
+                                <i class="fa-solid fa-rotate-left"></i> Limpar
+                            </button>
+                        </div>
+                        <p class="section-desc">Selecione os dados entalhados com símbolos rúnicos:</p>
+
+                        <div class="dice-square-grid macro-grid-layout">
+                            <div class="dice-tray-slot macro-slot" data-die="md6">
+                                <div class="die-badge-sq macro-badge">
+                                    <span class="m-label">MACRO D6</span>
+                                    <span class="m-sub">6 Faces</span>
+                                </div>
+                                <div class="stepper-counter">
+                                    <button class="step-btn minus" onclick="alterDiceCount('macro', 'md6', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="count-value" id="val-macro-md6">0</span>
+                                    <button class="step-btn plus" onclick="alterDiceCount('macro', 'md6', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="dice-tray-slot macro-slot" data-die="md10">
+                                <div class="die-badge-sq macro-badge">
+                                    <span class="m-label">MACRO D10</span>
+                                    <span class="m-sub">10 Faces</span>
+                                </div>
+                                <div class="stepper-counter">
+                                    <button class="step-btn minus" onclick="alterDiceCount('macro', 'md10', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="count-value" id="val-macro-md10">0</span>
+                                    <button class="step-btn plus" onclick="alterDiceCount('macro', 'md10', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="dice-tray-slot macro-slot" data-die="md12">
+                                <div class="die-badge-sq macro-badge">
+                                    <span class="m-label">MACRO D12</span>
+                                    <span class="m-sub">12 Faces</span>
+                                </div>
+                                <div class="stepper-counter">
+                                    <button class="step-btn minus" onclick="alterDiceCount('macro', 'md12', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <span class="count-value" id="val-macro-md12">0</span>
+                                    <button class="step-btn plus" onclick="alterDiceCount('macro', 'md12', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Legenda dos Símbolos de Macro -->
+                        <div class="macro-symbols-parchment">
+                            <div class="legend-entry"><span class="rune-tag rune-success"><i class="fa-solid fa-bug"></i></span> <strong>Sucesso</strong> (Impacto e Qualidade da Ação)</div>
+                            <div class="legend-entry"><span class="rune-tag rune-adaptation"><i class="fa-solid fa-shield-cat"></i></span> <strong>Adaptação</strong> (Flexibilidade Tática)</div>
+                            <div class="legend-entry"><span class="rune-tag rune-pressure"><i class="fa-solid fa-fire-flame-curved"></i></span> <strong>Pressão</strong> (Gatilho de Reação)</div>
+                            <div class="legend-entry"><span class="rune-tag rune-empty"><i class="fa-solid fa-ban"></i></span> <strong>Vazio</strong> (Sem Efeito)</div>
+                        </div>
+                    </div>
+
+                    <!-- Parâmetros de Macro -->
+                    <div class="parchment-card params-shelf">
+                        <div class="card-title-bar">
+                            <div class="card-heading">
+                                <i class="fa-solid fa-feather"></i> Modificadores Rúnicos
+                            </div>
+                        </div>
+
+                        <div class="rpg-form-group">
+                            <label><i class="fa-solid fa-filter"></i> Resolução dos Resultados:</label>
+                            <select id="macro-roll-mode" class="rpg-select">
+                                <option value="sum_all">Soma Consolidada de Todos os Símbolos</option>
+                                <option value="select_keep">Manter Dados (Seleção Manual na Bandeja)</option>
+                            </select>
+                        </div>
+
+                        <div class="macro-mods-stack">
+                            <div class="mod-stack-row">
+                                <label><i class="fa-solid fa-bug rune-color-suc"></i> Sucessos (+/-):</label>
+                                <div class="input-stepper-box">
+                                    <button class="step-btn minus" onclick="adjustInputValue('macro-mod-suc', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <input type="number" id="macro-mod-suc" value="0" class="rpg-number-input">
+                                    <button class="step-btn plus" onclick="adjustInputValue('macro-mod-suc', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="mod-stack-row">
+                                <label><i class="fa-solid fa-shield-cat rune-color-adp"></i> Adaptações (+/-):</label>
+                                <div class="input-stepper-box">
+                                    <button class="step-btn minus" onclick="adjustInputValue('macro-mod-adp', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <input type="number" id="macro-mod-adp" value="0" class="rpg-number-input">
+                                    <button class="step-btn plus" onclick="adjustInputValue('macro-mod-adp', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="mod-stack-row">
+                                <label><i class="fa-solid fa-fire-flame-curved rune-color-prs"></i> Pressões (+/-):</label>
+                                <div class="input-stepper-box">
+                                    <button class="step-btn minus" onclick="adjustInputValue('macro-mod-prs', -1)"><i class="fa-solid fa-minus"></i></button>
+                                    <input type="number" id="macro-mod-prs" value="0" class="rpg-number-input">
+                                    <button class="step-btn plus" onclick="adjustInputValue('macro-mod-prs', 1)"><i class="fa-solid fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button id="btn-roll-macro" class="cast-dice-btn macro-btn" onclick="executeMacroRoll()">
+                            <i class="fa-solid fa-scroll"></i> CONJURAR DADOS RÚNICOS
+                        </button>
+                    </div>
+                </div>
+
+                <!-- BANDEJA DE DADOS DEDICADA DA ROLAGEM MACRO -->
+                <div class="dice-tray-board macro-tray-board">
+                    <div class="tray-header">
+                        <div class="tray-title"><i class="fa-solid fa-feather"></i> Bandeja Rúnica de Macro</div>
+                        <div id="macro-tray-status" class="tray-status">Aguardando conjuração dos dados...</div>
+                    </div>
+
+                    <div id="macro-dice-arena" class="dice-arena-felt">
+                        <div class="empty-tray-msg">
+                            <i class="fa-solid fa-scroll tray-felt-icon"></i>
+                            <span>Selecione os dados rúnicos e lance-os para leitura dos símbolos.</span>
+                        </div>
+                    </div>
+
+                    <!-- Painel Interativo de Manter Dados -->
+                    <div id="macro-keep-panel" class="manual-keep-tray hidden">
+                        <div class="keep-tray-banner">
+                            <i class="fa-solid fa-hand-pointer"></i> Clique nos dados que deseja <strong>MANTER</strong> (o restante será descartado):
+                        </div>
+                        <button class="confirm-keep-btn" onclick="confirmMacroSelection()">
+                            <i class="fa-solid fa-check"></i> Confirmar Seleção e Calcular
+                        </button>
+                    </div>
+
+                    <!-- Painel de Resultado Macro -->
+                    <div id="macro-summary-box" class="scroll-summary-box hidden"></div>
+                </div>
+            </section>
+
+            <!-- REGISTRO DE AVENTURA (LOG DE ROLAGENS) -->
+            <section class="chronicle-log-section">
+                <div class="log-title-row">
+                    <div class="chronicle-tag"><i class="fa-solid fa-book-journal-whills"></i> Crônicas da Mesa (Histórico)</div>
+                    <button class="tome-btn-reset" onclick="clearChronicleLog()">Limpar Crônicas</button>
+                </div>
+                <div id="chronicle-feed" class="chronicle-feed">
+                    <div class="chronicle-entry sys-entry">[Grimório Aberto] Mesa pronta para a sessão de RPG. Bons lançamentos!</div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="../js/dados.js"></script>
+</body>
+</html>
